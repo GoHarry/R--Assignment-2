@@ -1,0 +1,60 @@
+---
+title: "Assignment-2"
+author: "Harkirat"
+date: "July 23, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+### R has built in functions for choose() and factorial(). This task is to write our own variation of the choose() function, that does not use either of these functions. 
+### First a function named fact is defined to calculate factorial and then function choose is created that calculates  n! / (( n - r)! * r!).:
+### Three test cases are also being used as given below. 
+* 1)Testing positive case when 0 <= r <= n
+* 2)Testing negative case when r < 0
+* 3)Testing negative case when n < r
+
+```{r}
+fact <- function(num) {
+  # find the factorial of a number
+  b <- 1 
+  while (num > 0) {
+  b <- b * num
+  num <- num - 1
+  } 
+  return(b)
+}
+
+choose <- function(n, r) {
+ 
+  if (r < 0) {
+    warning("please check if you satisfy condition 0 <= r")
+    return(NA)
+  }
+  if (n < r) {
+    warning("please check if you satisfy condition r <= n")
+    return(NA)
+  } 
+    x <- fact(n)
+    y <- fact(n - r)
+    z <- fact(r)
+    result <- x / (y * z)
+    return(result)
+  }
+# Test case 1 - When testing positive case when 0 <= r <= n
+test_case_1 <- choose(5, 3)
+test_case_1
+# Test case 2 - When testing negative case when r < 0
+test_case_2 <- choose(5, -3)
+test_case_2
+# Test case 3 - When testing negative case when n < r
+test_case_3 <- choose(3, 5)
+test_case_3
+```
+
+
+
